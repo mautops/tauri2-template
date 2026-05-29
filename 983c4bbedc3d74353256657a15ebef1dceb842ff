@@ -1,0 +1,23 @@
+vitest.config.ts
+  066c6a4559fc5bc2 4,7-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.16",
+  "base_commit_sha": "983c4bbedc3d74353256657a15ebef1dceb842ff",
+  "prompts": {
+    "066c6a4559fc5bc2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e198dc13-2248-4730-a3f7-9aa7b784e176",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "HiOps <hiops@cvte.com>",
+      "messages": [],
+      "total_additions": 4,
+      "total_deletions": 0,
+      "accepted_lines": 4,
+      "overriden_lines": 0
+    }
+  }
+}
