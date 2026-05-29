@@ -29,6 +29,9 @@
   "preferences.general.exampleTextPlaceholder": "Enter example text",
   "preferences.general.exampleToggle": "Example Toggle Setting",
   "preferences.general.exampleToggleDescription": "This is an example switch/toggle setting (not persisted)",
+  "preferences.general.about": "About",
+  "preferences.general.version": "Version",
+  "preferences.general.aboutDescription": "Tauri Template — a modern desktop app boilerplate built with Tauri v2, React, TypeScript, and shadcn/ui.",
 
   "preferences.shortcuts.globalShortcuts": "Global Shortcuts",
   "preferences.shortcuts.quickPaneShortcut": "Quick Pane",

@@ -29,6 +29,9 @@
   "preferences.general.exampleTextPlaceholder": "请输入示例文本",
   "preferences.general.exampleToggle": "示例开关设置",
   "preferences.general.exampleToggleDescription": "这是一个示例开关设置（不会持久化）",
+  "preferences.general.about": "关于",
+  "preferences.general.version": "版本",
+  "preferences.general.aboutDescription": "Tauri Template — 基于 Tauri v2、React、TypeScript 和 shadcn/ui 构建的现代桌面应用模板。",
 
   "preferences.shortcuts.globalShortcuts": "全局快捷键",
   "preferences.shortcuts.quickPaneShortcut": "快速面板",
