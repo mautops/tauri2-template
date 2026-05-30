@@ -171,6 +171,39 @@ async updateRightSidebarShortcut(shortcut: string | null) : Promise<Result<null,
     if(e instanceof Error) throw e;
     else return { status: "error", error: e  as any };
 }
+},
+/**
+ * Fetch all notes ordered by creation date (newest first).
+ */
+async getNotes() : Promise<Result<Note[], string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("get_notes") };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Create a new note with the given title and content.
+ */
+async createNote(input: CreateNoteInput) : Promise<Result<Note, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("create_note", { input }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Delete a note by its ID.
+ */
+async deleteNote(id: number) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("delete_note", { id }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
 }
 }
 
@@ -217,7 +250,9 @@ language: string | null;
  * Glass effect opacity for transparent panels (0.0 to 1.0). Defaults to 0.72.
  */
 glass_opacity: number }
+export type CreateNoteInput = { title: string; content: string }
 export type JsonValue = null | boolean | number | string | JsonValue[] | Partial<{ [key in string]: JsonValue }>
+export type Note = { id: number; title: string; content: string; created_at: string; updated_at: string }
 /**
  * Error types for recovery operations (typed for frontend matching)
  */

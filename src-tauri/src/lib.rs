@@ -201,12 +201,29 @@ pub fn run() {
                     .map(|p| p.join("app.db"))
                     .expect("failed to resolve app data dir");
 
-                let _ = db_path; // Used only for path resolution
+
+                let migrations = vec![tauri_plugin_sql::Migration {
+                    version: 1,
+                    description: "create_initial_tables",
+                    sql: include_str!("../migrations/001_initial.sql"),
+                    kind: tauri_plugin_sql::MigrationKind::Up,
+                }];
+
                 app.handle().plugin(
                     tauri_plugin_sql::Builder::new()
-                        .add_migrations("sqlite:app.db", vec![])
+                        .add_migrations("sqlite:app.db", migrations)
                         .build(),
                 )?;
+
+                // Initialize sqlx pool for Rust-side database access
+                let db_path = db_path.to_string_lossy().to_string();
+                let pool = tauri::async_runtime::block_on(async {
+                    sqlx::SqlitePool::connect(&format!("sqlite:{db_path}?mode=rwc"))
+                        .await
+                        .expect("failed to connect to SQLite database")
+                });
+                app.manage(commands::database::DbState(pool));
+
                 tracing::info!("SQLite database initialized");
             }
 

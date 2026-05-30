@@ -1,7 +1,7 @@
 use tauri_specta::{collect_commands, Builder};
 
 pub fn generate_bindings() -> Builder<tauri::Wry> {
-    use crate::commands::{notifications, preferences, quick_pane, recovery, shortcuts};
+    use crate::commands::{database, notifications, preferences, quick_pane, recovery, shortcuts};
 
     Builder::<tauri::Wry>::new().commands(collect_commands![
         preferences::greet,
@@ -21,6 +21,9 @@ pub fn generate_bindings() -> Builder<tauri::Wry> {
         shortcuts::get_default_right_sidebar_shortcut,
         shortcuts::update_left_sidebar_shortcut,
         shortcuts::update_right_sidebar_shortcut,
+        database::get_notes,
+        database::create_note,
+        database::delete_note,
     ])
 }
 

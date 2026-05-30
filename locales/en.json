@@ -84,6 +84,7 @@
   "common.enabled": "Enabled",
   "common.disabled": "Disabled",
   "common.reset": "Reset",
+  "common.loading": "Loading...",
 
   "commands.group.navigation": "Navigation",
   "commands.group.settings": "Settings",
@@ -168,5 +169,10 @@
   "formDemo.fields.bio": "Bio",
   "formDemo.fields.bioPlaceholder": "Tell us about yourself...",
   "formDemo.fields.bioHint": "Max 200 characters.",
-  "formDemo.submit": "Save Profile"
+  "formDemo.submit": "Save Profile",
+
+  "dbDemo.title": "Database Demo",
+  "dbDemo.placeholder": "New note title...",
+  "dbDemo.empty": "No notes yet. Create one above.",
+  "dbDemo.created": "Note created!"
 }
