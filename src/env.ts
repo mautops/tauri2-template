@@ -16,7 +16,8 @@ const envSchema = z.preprocess(
     VITE_API_TIMEOUT_MS: z
       .string()
       .default('10000')
-      .transform(v => parseInt(v, 10)),
+      .transform(v => parseInt(v, 10))
+      .pipe(z.number().int().positive()),
     VITE_ENABLE_DEVTOOLS: z
       .string()
       .default('false')

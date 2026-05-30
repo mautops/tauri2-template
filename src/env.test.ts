@@ -35,4 +35,10 @@ describe('env validation', () => {
     const { env } = await import('./env')
     expect(env.API_TIMEOUT_MS).toBe(5000)
   })
+
+  it('throws on invalid numeric value', async () => {
+    vi.stubEnv('VITE_API_TIMEOUT_MS', 'not-a-number')
+
+    await expect(import('./env')).rejects.toThrow()
+  })
 })
