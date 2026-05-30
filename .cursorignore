@@ -65,8 +65,7 @@ pnpm-debug.log*
 .tmp/
 .temp/
 
-# Package manager lockfiles (keep only one)
-package-lock.json
+# Package manager lockfiles (keep only the active one)
 yarn.lock
 pnpm-lock.yaml
 

@@ -26,8 +26,8 @@ export function useMainWindowEventListeners() {
       logger.debug('Quick pane submit event received', {
         text: event.payload.text,
       })
-      const { setLastQuickPaneEntry } = useUIStore.getState()
-      setLastQuickPaneEntry(event.payload.text)
+      const { addQuickPaneEntry } = useUIStore.getState()
+      addQuickPaneEntry(event.payload.text)
     })
       .then(unlistenFn => {
         if (!isMounted) {

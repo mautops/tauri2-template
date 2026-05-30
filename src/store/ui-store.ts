@@ -1,12 +1,21 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
+interface QuickPaneEntry {
+  id: string
+  text: string
+  timestamp: number
+}
+
+const MAX_QUICK_PANE_ENTRIES = 50
+const MAX_ENTRY_LENGTH = 80
+
 interface UIState {
   leftSidebarVisible: boolean
   rightSidebarVisible: boolean
   commandPaletteOpen: boolean
   preferencesOpen: boolean
-  lastQuickPaneEntry: string | null
+  quickPaneEntries: QuickPaneEntry[]
   recentCommands: { id: string; labelKey: string; timestamp: number }[]
 
   toggleLeftSidebar: () => void
@@ -17,10 +26,13 @@ interface UIState {
   setCommandPaletteOpen: (open: boolean) => void
   togglePreferences: () => void
   setPreferencesOpen: (open: boolean) => void
-  setLastQuickPaneEntry: (text: string) => void
+  addQuickPaneEntry: (text: string) => void
+  clearQuickPaneEntries: () => void
   setSquareCorners: (enabled: boolean) => void
   addRecentCommand: (id: string, labelKey: string) => void
 }
+
+export { MAX_ENTRY_LENGTH }
 
 export const useUIStore = create<UIState>()(
   devtools(
@@ -29,7 +41,7 @@ export const useUIStore = create<UIState>()(
       rightSidebarVisible: true,
       commandPaletteOpen: false,
       preferencesOpen: false,
-      lastQuickPaneEntry: null,
+      quickPaneEntries: [],
       recentCommands: [],
 
       toggleLeftSidebar: () =>
@@ -80,8 +92,27 @@ export const useUIStore = create<UIState>()(
       setPreferencesOpen: open =>
         set({ preferencesOpen: open }, undefined, 'setPreferencesOpen'),
 
-      setLastQuickPaneEntry: text =>
-        set({ lastQuickPaneEntry: text }, undefined, 'setLastQuickPaneEntry'),
+      addQuickPaneEntry: text =>
+        set(
+          state => ({
+            quickPaneEntries: [
+              {
+                id: crypto.randomUUID(),
+                text:
+                  text.length > MAX_ENTRY_LENGTH
+                    ? text.slice(0, MAX_ENTRY_LENGTH)
+                    : text,
+                timestamp: Date.now(),
+              },
+              ...state.quickPaneEntries,
+            ].slice(0, MAX_QUICK_PANE_ENTRIES),
+          }),
+          undefined,
+          'addQuickPaneEntry'
+        ),
+
+      clearQuickPaneEntries: () =>
+        set({ quickPaneEntries: [] }, undefined, 'clearQuickPaneEntries'),
 
       setSquareCorners: (enabled: boolean) => {
         document.documentElement.classList.toggle('square-corners', enabled)

@@ -32,7 +32,8 @@ interface TitleBarProps {
  */
 export function TitleBar({ className, title, forcePlatform }: TitleBarProps) {
   const { t } = useTranslation()
-  const displayTitle = title ?? t('titlebar.default')
+  const displayTitle =
+    title ?? t('titlebar.default', { version: __APP_VERSION__ })
   const detectedPlatform = usePlatform()
 
   // In development, allow forcing a platform for testing

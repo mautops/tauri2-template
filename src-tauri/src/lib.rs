@@ -202,7 +202,6 @@ pub fn run() {
                     .map(|p| p.join("app.db"))
                     .expect("failed to resolve app data dir");
 
-
                 let migrations = vec![tauri_plugin_sql::Migration {
                     version: 1,
                     description: "create_initial_tables",
@@ -219,9 +218,37 @@ pub fn run() {
                 // Initialize sqlx pool for Rust-side database access
                 let db_path = db_path.to_string_lossy().to_string();
                 let pool = tauri::async_runtime::block_on(async {
-                    sqlx::SqlitePool::connect(&format!("sqlite:{db_path}?mode=rwc"))
+                    let pool = sqlx::SqlitePool::connect(&format!("sqlite:{db_path}?mode=rwc"))
                         .await
-                        .expect("failed to connect to SQLite database")
+                        .expect("failed to connect to SQLite database");
+
+                    // Run migrations against the sqlx pool
+                    sqlx::query(
+                        "CREATE TABLE IF NOT EXISTS notes (
+                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          title TEXT NOT NULL,
+                          content TEXT NOT NULL DEFAULT '',
+                          created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                          updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+                        )",
+                    )
+                    .execute(&pool)
+                    .await
+                    .expect("failed to create notes table");
+
+                    sqlx::query(
+                        "CREATE TRIGGER IF NOT EXISTS notes_updated_at
+                          AFTER UPDATE ON notes
+                          FOR EACH ROW
+                        BEGIN
+                          UPDATE notes SET updated_at = datetime('now') WHERE id = OLD.id;
+                        END",
+                    )
+                    .execute(&pool)
+                    .await
+                    .expect("failed to create notes trigger");
+
+                    pool
                 });
                 app.manage(commands::database::DbState(pool));
 

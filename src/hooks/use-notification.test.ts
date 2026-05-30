@@ -3,7 +3,9 @@ import { renderHook, act } from '@testing-library/react'
 
 vi.mock('@/lib/tauri-bindings', () => ({
   commands: {
-    sendNativeNotification: vi.fn().mockResolvedValue({ status: 'ok', data: null }),
+    sendNativeNotification: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
     loadPreferences: vi.fn().mockResolvedValue({
       status: 'ok',
       data: {
@@ -56,12 +58,17 @@ describe('useNotification', () => {
       await result.current.notify('Test Title', { native: true })
     })
 
-    expect(commands.sendNativeNotification).toHaveBeenCalledWith('Test Title', null)
+    expect(commands.sendNativeNotification).toHaveBeenCalledWith(
+      'Test Title',
+      null
+    )
   })
 
   it('falls back to toast when native notification fails', async () => {
     const { commands } = await import('@/lib/tauri-bindings')
-    vi.mocked(commands.sendNativeNotification).mockRejectedValueOnce(new Error('Permission denied'))
+    vi.mocked(commands.sendNativeNotification).mockRejectedValueOnce(
+      new Error('Permission denied')
+    )
 
     const { toast } = await import('sonner')
     const { useNotification } = await import('./use-notification')

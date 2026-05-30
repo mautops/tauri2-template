@@ -20,7 +20,7 @@ describe('ApiClient', () => {
 
     expect(mockFetch).toHaveBeenCalledWith(
       'https://api.example.com/users/1',
-      expect.objectContaining({ method: 'GET' }),
+      expect.objectContaining({ method: 'GET' })
     )
     expect(result).toEqual({ id: 1, name: 'Alice' })
   })
@@ -54,8 +54,10 @@ describe('ApiClient', () => {
       expect.objectContaining({
         method: 'POST',
         body: JSON.stringify({ name: 'Bob' }),
-        headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
-      }),
+        headers: expect.objectContaining({
+          'Content-Type': 'application/json',
+        }),
+      })
     )
   })
 
@@ -71,7 +73,7 @@ describe('ApiClient', () => {
 
     expect(mockFetch).toHaveBeenCalledWith(
       expect.any(String),
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+      expect.objectContaining({ signal: expect.any(AbortSignal) })
     )
   })
 })

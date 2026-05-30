@@ -10,7 +10,9 @@ describe('App', () => {
     // Wait for SplashScreen transition (600ms delay + async init), then verify MainWindow
     await waitFor(
       () => {
-        expect(screen.getByText('Tauri App')).toBeInTheDocument()
+        expect(
+          screen.getByText(`Tauri App v${__APP_VERSION__}`)
+        ).toBeInTheDocument()
       },
       { timeout: 2000 }
     )

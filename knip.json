@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": ["src/main.tsx", "vite.config.ts", "vitest.config.ts"],
+  "entry": ["src/main.tsx", "src/quick-pane-main.tsx", "vite.config.ts", "vitest.config.ts"],
   "project": ["src/**/*.{ts,tsx}"],
   "ignore": [
     "src/components/ui/**",

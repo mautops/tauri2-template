@@ -11,7 +11,7 @@ describe('useZodForm', () => {
 
   it('initializes with default values', () => {
     const { result } = renderHook(() =>
-      useZodForm(schema, { defaultValues: { name: '', email: '' } }),
+      useZodForm(schema, { defaultValues: { name: '', email: '' } })
     )
     expect(result.current.getValues()).toEqual({ name: '', email: '' })
   })
@@ -19,7 +19,7 @@ describe('useZodForm', () => {
   it('prevents submission with invalid data', async () => {
     const onSubmit = vi.fn()
     const { result } = renderHook(() =>
-      useZodForm(schema, { defaultValues: { name: '', email: 'not-an-email' } }),
+      useZodForm(schema, { defaultValues: { name: '', email: 'not-an-email' } })
     )
 
     await act(async () => {
@@ -33,7 +33,9 @@ describe('useZodForm', () => {
   it('allows submission with valid data', async () => {
     const onSubmit = vi.fn()
     const { result } = renderHook(() =>
-      useZodForm(schema, { defaultValues: { name: 'Alice', email: 'alice@example.com' } }),
+      useZodForm(schema, {
+        defaultValues: { name: 'Alice', email: 'alice@example.com' },
+      })
     )
 
     await act(async () => {

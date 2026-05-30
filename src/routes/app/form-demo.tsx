@@ -1,5 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { ArrowLeft } from 'lucide-react'
 import { useZodForm, z } from '@/lib/forms'
 import {
   Form,
@@ -40,9 +41,18 @@ function FormDemoPage() {
 
   return (
     <div className="flex flex-col gap-6 p-6 max-w-lg">
+      <Link
+        to="/app/dashboard"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
+      >
+        <ArrowLeft className="size-4" />
+        {t('common.backToDashboard')}
+      </Link>
       <div>
         <h1 className="text-2xl font-semibold">{t('formDemo.title')}</h1>
-        <p className="text-muted-foreground mt-1">{t('formDemo.description')}</p>
+        <p className="text-muted-foreground mt-1">
+          {t('formDemo.description')}
+        </p>
       </div>
 
       <Form {...form}>
@@ -68,9 +78,15 @@ function FormDemoPage() {
               <FormItem>
                 <FormLabel>{t('formDemo.fields.email')}</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="alice@example.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="alice@example.com"
+                    {...field}
+                  />
                 </FormControl>
-                <FormDescription>{t('formDemo.fields.emailHint')}</FormDescription>
+                <FormDescription>
+                  {t('formDemo.fields.emailHint')}
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -83,9 +99,14 @@ function FormDemoPage() {
               <FormItem>
                 <FormLabel>{t('formDemo.fields.bio')}</FormLabel>
                 <FormControl>
-                  <Input placeholder={t('formDemo.fields.bioPlaceholder')} {...field} />
+                  <Input
+                    placeholder={t('formDemo.fields.bioPlaceholder')}
+                    {...field}
+                  />
                 </FormControl>
-                <FormDescription>{t('formDemo.fields.bioHint')}</FormDescription>
+                <FormDescription>
+                  {t('formDemo.fields.bioHint')}
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}

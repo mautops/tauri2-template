@@ -1,7 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Trash2, Plus } from 'lucide-react'
+import { ArrowLeft, Trash2, Plus } from 'lucide-react'
 import { useNotes, useCreateNote, useDeleteNote } from '@/services/database'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -39,6 +39,13 @@ function DbDemoPage() {
 
   return (
     <div className="flex flex-col gap-4 p-6 max-w-lg">
+      <Link
+        to="/app/dashboard"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
+      >
+        <ArrowLeft className="size-4" />
+        {t('common.backToDashboard')}
+      </Link>
       <h1 className="text-2xl font-semibold">{t('dbDemo.title')}</h1>
 
       <div className="flex gap-2">
@@ -48,7 +55,10 @@ function DbDemoPage() {
           placeholder={t('dbDemo.placeholder')}
           onKeyDown={e => e.key === 'Enter' && handleCreate()}
         />
-        <Button onClick={handleCreate} disabled={createNote.isPending || !title.trim()}>
+        <Button
+          onClick={handleCreate}
+          disabled={createNote.isPending || !title.trim()}
+        >
           <Plus className="size-4" />
         </Button>
       </div>
@@ -60,7 +70,10 @@ function DbDemoPage() {
       ) : (
         <ul className="space-y-2">
           {notes.map(note => (
-            <li key={note.id} className="flex items-center justify-between rounded-md border px-3 py-2">
+            <li
+              key={note.id}
+              className="flex items-center justify-between rounded-md border px-3 py-2"
+            >
               <span className="text-sm">{note.title}</span>
               <Button
                 variant="ghost"

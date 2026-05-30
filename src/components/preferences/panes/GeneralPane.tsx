@@ -22,7 +22,6 @@ export function GeneralPane() {
   const logout = useAuthStore(state => state.logout)
   const { data: preferences } = usePreferences()
   const savePreferences = useSavePreferences()
-  const appVersion = __APP_VERSION__
 
   return (
     <div className="space-y-6">
@@ -53,29 +52,16 @@ export function GeneralPane() {
             <Switch
               disabled={!preferences || savePreferences.isPending}
               checked={preferences?.notifications_enabled ?? true}
-              onCheckedChange={value =>
+              onCheckedChange={value => {
+                if (!preferences) return
                 savePreferences.mutate({
-                  ...preferences!,
+                  ...preferences,
                   notifications_enabled: value,
                 })
-              }
+              }}
               aria-label={t('preferences.notifications.label')}
             />
           </div>
-        </div>
-      </SettingsSection>
-
-      <SettingsSection title={t('preferences.general.about')}>
-        <div className="space-y-2">
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm font-medium text-foreground shrink-0">
-              {t('preferences.general.version')}
-            </span>
-            <span className="text-sm text-muted-foreground">{appVersion}</span>
-          </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            {t('preferences.general.aboutDescription')}
-          </p>
         </div>
       </SettingsSection>
 

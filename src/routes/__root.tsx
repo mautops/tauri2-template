@@ -9,7 +9,9 @@ export const Route = createRootRoute({
     <ErrorBoundary>
       <ThemeProvider>
         <Outlet />
-        {env.ENABLE_DEVTOOLS && import.meta.env.DEV && <TanStackRouterDevtools />}
+        {env.ENABLE_DEVTOOLS && import.meta.env.DEV && (
+          <TanStackRouterDevtools />
+        )}
       </ThemeProvider>
     </ErrorBoundary>
   ),

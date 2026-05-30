@@ -18,7 +18,7 @@ async function request<T>(
   baseUrl: string,
   path: string,
   init: RequestInit,
-  options: ApiClientOptions,
+  options: ApiClientOptions
 ): Promise<T> {
   const timeout = options.timeout ?? env.API_TIMEOUT_MS
   const controller = new AbortController()
@@ -64,7 +64,7 @@ export interface ApiClient {
 
 export function createApiClient(
   baseUrl: string,
-  defaultOptions: ApiClientOptions = {},
+  defaultOptions: ApiClientOptions = {}
 ): ApiClient {
   const opts = defaultOptions
 
@@ -81,7 +81,7 @@ export function createApiClient(
           body: body !== undefined ? JSON.stringify(body) : undefined,
           headers: { 'Content-Type': 'application/json' },
         },
-        { ...opts, ...options },
+        { ...opts, ...options }
       ),
 
     put: <T>(path: string, body?: unknown, options: ApiClientOptions = {}) =>
@@ -93,7 +93,7 @@ export function createApiClient(
           body: body !== undefined ? JSON.stringify(body) : undefined,
           headers: { 'Content-Type': 'application/json' },
         },
-        { ...opts, ...options },
+        { ...opts, ...options }
       ),
 
     patch: <T>(path: string, body?: unknown, options: ApiClientOptions = {}) =>
@@ -105,7 +105,7 @@ export function createApiClient(
           body: body !== undefined ? JSON.stringify(body) : undefined,
           headers: { 'Content-Type': 'application/json' },
         },
-        { ...opts, ...options },
+        { ...opts, ...options }
       ),
 
     delete: <T>(path: string, options: ApiClientOptions = {}) =>

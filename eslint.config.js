@@ -62,7 +62,7 @@ export default tseslint.config(
   },
   prettierConfig,
   {
-    files: ['src/components/ui/**/*.{ts,tsx}', 'src/test/**/*.{ts,tsx}'],
+    files: ['src/components/ui/**/*.{ts,tsx}', 'src/test/**/*.{ts,tsx}', 'src/routes/**/*.{ts,tsx}'],
     rules: {
       'react-refresh/only-export-components': 'off',
       // Disable compiler rule for UI components (from shadcn) and test files

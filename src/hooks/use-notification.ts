@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
 import { toast } from 'sonner'
-import { isPermissionGranted, requestPermission } from '@tauri-apps/plugin-notification'
+import {
+  isPermissionGranted,
+  requestPermission,
+} from '@tauri-apps/plugin-notification'
 import { commands } from '@/lib/tauri-bindings'
 import { logger } from '@/lib/logger'
 import { usePreferences } from '@/services/preferences'
@@ -70,7 +73,7 @@ export function useNotification() {
           toast.info(title, toastOptions)
       }
     },
-    [notificationsEnabled, requestNativePermission],
+    [notificationsEnabled, requestNativePermission]
   )
 
   return { notify, notificationsEnabled }
