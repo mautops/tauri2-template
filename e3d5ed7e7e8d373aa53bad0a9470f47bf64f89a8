@@ -1,0 +1,23 @@
+src/components/ui/label.tsx
+  d56f7ad056bd1b12 6-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.16",
+  "base_commit_sha": "e3d5ed7e7e8d373aa53bad0a9470f47bf64f89a8",
+  "prompts": {
+    "d56f7ad056bd1b12": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f02c3317-d2c4-46f0-9386-1d918e980cc3",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "HiOps <hiops@cvte.com>",
+      "messages": [],
+      "total_additions": 15,
+      "total_deletions": 15,
+      "accepted_lines": 2032,
+      "overriden_lines": 0
+    }
+  }
+}
