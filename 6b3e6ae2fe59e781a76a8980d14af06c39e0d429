@@ -1,0 +1,25 @@
+src/lib/api-client.test.ts
+  d56f7ad056bd1b12 1-77
+src/lib/api-client.ts
+  d56f7ad056bd1b12 1-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.16",
+  "base_commit_sha": "6b3e6ae2fe59e781a76a8980d14af06c39e0d429",
+  "prompts": {
+    "d56f7ad056bd1b12": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f02c3317-d2c4-46f0-9386-1d918e980cc3",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "HiOps <hiops@cvte.com>",
+      "messages": [],
+      "total_additions": 193,
+      "total_deletions": 0,
+      "accepted_lines": 2210,
+      "overriden_lines": 0
+    }
+  }
+}
