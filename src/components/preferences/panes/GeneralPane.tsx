@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { useAuthStore } from '@/store/auth-store'
+import { usePreferences, useSavePreferences } from '@/services/preferences'
 import { SettingsSection } from '../shared/SettingsComponents'
 
 export function GeneralPane() {
@@ -19,6 +20,8 @@ export function GeneralPane() {
   const [exampleToggle, setExampleToggle] = useState(true)
   const username = useAuthStore(state => state.username)
   const logout = useAuthStore(state => state.logout)
+  const { data: preferences } = usePreferences()
+  const savePreferences = useSavePreferences()
   const appVersion = __APP_VERSION__
 
   return (
@@ -34,6 +37,30 @@ export function GeneralPane() {
               <LogOut className="mr-2 h-4 w-4" />
               {t('preferences.general.logout')}
             </Button>
+          </div>
+        </div>
+      </SettingsSection>
+
+      <SettingsSection title={t('preferences.general.notifications')}>
+        <div className="flex items-center justify-between gap-4">
+          <div className="space-y-0.5">
+            <Label>{t('preferences.notifications.label')}</Label>
+            <p className="text-muted-foreground text-xs">
+              {t('preferences.notifications.description')}
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Switch
+              disabled={!preferences || savePreferences.isPending}
+              checked={preferences?.notifications_enabled ?? true}
+              onCheckedChange={value =>
+                savePreferences.mutate({
+                  ...preferences!,
+                  notifications_enabled: value,
+                })
+              }
+              aria-label={t('preferences.notifications.label')}
+            />
           </div>
         </div>
       </SettingsSection>

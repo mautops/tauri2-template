@@ -47,6 +47,9 @@ pub struct AppPreferences {
     pub language: Option<String>,
     /// Glass effect opacity for transparent panels (0.0 to 1.0). Defaults to 0.72.
     pub glass_opacity: f32,
+    /// Whether native desktop notifications are enabled. Defaults to true.
+    #[serde(default = "default_notifications_enabled")]
+    pub notifications_enabled: bool,
 }
 
 impl Default for AppPreferences {
@@ -59,6 +62,7 @@ impl Default for AppPreferences {
             right_sidebar_shortcut: None,
             language: None,
             glass_opacity: 0.72,
+            notifications_enabled: true,
         }
     }
 }
@@ -157,4 +161,8 @@ pub fn validate_color_scheme(scheme: &str) -> Result<(), String> {
             "Invalid color scheme: must be 'supabase', 'vercel', 'linear', or 'stripe'".to_string(),
         ),
     }
+}
+
+fn default_notifications_enabled() -> bool {
+    true
 }

@@ -29,6 +29,7 @@
   "preferences.general.exampleTextPlaceholder": "请输入示例文本",
   "preferences.general.exampleToggle": "示例开关设置",
   "preferences.general.exampleToggleDescription": "这是一个示例开关设置（不会持久化）",
+  "preferences.general.notifications": "通知",
   "preferences.general.about": "关于",
   "preferences.general.version": "版本",
   "preferences.general.aboutDescription": "Tauri Template — 基于 Tauri v2、React、TypeScript 和 shadcn/ui 构建的现代桌面应用模板。",
@@ -80,6 +81,9 @@
   "preferences.advanced.exportSuccess": "配置导出成功",
   "preferences.advanced.importSuccess": "配置导入成功",
   "preferences.advanced.importFailed": "配置导入失败，请检查文件格式",
+
+  "preferences.notifications.label": "启用通知",
+  "preferences.notifications.description": "允许应用显示桌面原生通知。",
 
   "common.enabled": "已启用",
   "common.disabled": "已禁用",

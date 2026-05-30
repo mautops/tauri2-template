@@ -249,7 +249,11 @@ language: string | null;
 /**
  * Glass effect opacity for transparent panels (0.0 to 1.0). Defaults to 0.72.
  */
-glass_opacity: number }
+glass_opacity: number; 
+/**
+ * Whether native desktop notifications are enabled. Defaults to true.
+ */
+notifications_enabled?: boolean }
 export type CreateNoteInput = { title: string; content: string }
 export type JsonValue = null | boolean | number | string | JsonValue[] | Partial<{ [key in string]: JsonValue }>
 export type Note = { id: number; title: string; content: string; created_at: string; updated_at: string }

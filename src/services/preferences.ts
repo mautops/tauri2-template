@@ -30,6 +30,7 @@ export function usePreferences() {
           right_sidebar_shortcut: null,
           language: null,
           glass_opacity: 0.72,
+          notifications_enabled: true,
         }
       }
 
