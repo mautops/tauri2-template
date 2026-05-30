@@ -1,0 +1,27 @@
+src-tauri/src/lib.rs
+  d56f7ad056bd1b12 87,231-269
+src-tauri/Cargo.toml
+  d56f7ad056bd1b12 55
+src-tauri/tauri.conf.json
+  d56f7ad056bd1b12 80-103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.16",
+  "base_commit_sha": "33dc722fd51085330d6008a9f6f1a4e46605d45d",
+  "prompts": {
+    "d56f7ad056bd1b12": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f02c3317-d2c4-46f0-9386-1d918e980cc3",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "HiOps <hiops@cvte.com>",
+      "messages": [],
+      "total_additions": 65,
+      "total_deletions": 0,
+      "accepted_lines": 2082,
+      "overriden_lines": 0
+    }
+  }
+}
