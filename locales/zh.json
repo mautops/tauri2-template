@@ -158,5 +158,15 @@
   "login.sso.comingSoon": "Keycloak 单点登录即将支持",
 
   "dashboard.title": "仪表盘",
-  "dashboard.description": "欢迎使用。从这里开始构建你的应用。"
+  "dashboard.description": "欢迎使用。从这里开始构建你的应用。",
+
+  "formDemo.title": "表单示例",
+  "formDemo.description": "演示 react-hook-form 配合 zod 校验的用法。",
+  "formDemo.fields.displayName": "显示名称",
+  "formDemo.fields.email": "邮箱",
+  "formDemo.fields.emailHint": "我们不会分享你的邮箱。",
+  "formDemo.fields.bio": "简介",
+  "formDemo.fields.bioPlaceholder": "介绍一下你自己...",
+  "formDemo.fields.bioHint": "最多 200 个字符。",
+  "formDemo.submit": "保存资料"
 }
