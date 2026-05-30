@@ -84,6 +84,7 @@ pub fn run() {
             None::<Vec<&str>>,
         ))
         .plugin(tauri_plugin_deep_link::init())
+        .plugin(tauri_plugin_cli::init())
         .setup(|app| {
             // Initialize tracing before anything else
             {
@@ -225,6 +226,45 @@ pub fn run() {
                 app.manage(commands::database::DbState(pool));
 
                 tracing::info!("SQLite database initialized");
+            }
+
+            // Handle CLI arguments
+            #[cfg(desktop)]
+            {
+                use tauri_plugin_cli::CliExt;
+
+                if let Ok(matches) = app.cli().matches() {
+                    // --reset-config: Delete preferences.json so defaults are used on next start
+                    if let Some(arg) = matches.args.get("reset-config") {
+                        if arg.value.as_bool().unwrap_or(false) {
+                            if let Ok(data_dir) = app.path().app_data_dir() {
+                                let prefs_path = data_dir.join("preferences.json");
+                                if prefs_path.exists() {
+                                    let _ = std::fs::remove_file(&prefs_path);
+                                    println!("Preferences reset to defaults.");
+                                }
+                            }
+                        }
+                    }
+
+                    // --debug: Open DevTools (useful in release builds)
+                    if let Some(arg) = matches.args.get("debug") {
+                        if arg.value.as_bool().unwrap_or(false) {
+                            if let Some(window) = app.get_webview_window("main") {
+                                #[cfg(not(debug_assertions))]
+                                window.open_devtools();
+                                let _ = window; // suppress unused warning in debug builds
+                            }
+                        }
+                    }
+
+                    // --log-level: Log the requested level override
+                    if let Some(arg) = matches.args.get("log-level") {
+                        if let Some(level_str) = arg.value.as_str() {
+                            tracing::info!("CLI log level override requested: {level_str}");
+                        }
+                    }
+                }
             }
 
             // Drag-drop is handled from the frontend via

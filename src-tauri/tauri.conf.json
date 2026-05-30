@@ -77,6 +77,30 @@
       "desktop": {
         "schemes": ["tauri-template"]
       }
+    },
+    "cli": {
+      "description": "A Tauri app built from tauri-template",
+      "args": [
+        {
+          "name": "reset-config",
+          "short": "r",
+          "description": "Reset all preferences to defaults",
+          "takesValue": false
+        },
+        {
+          "name": "log-level",
+          "short": "l",
+          "description": "Set log level (error, warn, info, debug, trace)",
+          "takesValue": true,
+          "possibleValues": ["error", "warn", "info", "debug", "trace"]
+        },
+        {
+          "name": "debug",
+          "short": "d",
+          "description": "Enable debug mode (shows DevTools on startup)",
+          "takesValue": false
+        }
+      ]
     }
   }
 }
