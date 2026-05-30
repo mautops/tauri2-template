@@ -155,5 +155,8 @@
   "login.error.invalid": "用户名或密码错误",
   "login.sso.or": "或",
   "login.sso.keycloak": "使用 Keycloak 登录",
-  "login.sso.comingSoon": "Keycloak 单点登录即将支持"
+  "login.sso.comingSoon": "Keycloak 单点登录即将支持",
+
+  "dashboard.title": "仪表盘",
+  "dashboard.description": "欢迎使用。从这里开始构建你的应用。"
 }

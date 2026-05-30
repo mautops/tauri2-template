@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
@@ -13,6 +14,10 @@ export default defineConfig(async () => ({
     __APP_VERSION__: JSON.stringify(packageJson.version),
   },
   plugins: [
+    TanStackRouterVite({
+      routesDirectory: './src/routes',
+      generatedRouteTree: './src/routeTree.gen.ts',
+    }),
     react(),
     babel({
       presets: [reactCompilerPreset()],

@@ -50,7 +50,7 @@ function safeResize(panel: ImperativePanelHandle | null, size: number) {
   }
 }
 
-export function MainWindow() {
+export function MainWindow({ children }: { children?: React.ReactNode }) {
   const { theme } = useTheme()
   const leftSidebarVisible = useUIStore(state => state.leftSidebarVisible)
   const rightSidebarVisible = useUIStore(state => state.rightSidebarVisible)
@@ -142,7 +142,7 @@ export function MainWindow() {
             defaultSize={MAIN_CONTENT_DEFAULT}
             minSize={LAYOUT.main.min}
           >
-            <MainWindowContent />
+            <MainWindowContent>{children}</MainWindowContent>
           </ResizablePanel>
 
           <ResizableHandle

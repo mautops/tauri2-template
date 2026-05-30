@@ -155,5 +155,8 @@
   "login.error.invalid": "Invalid username or password",
   "login.sso.or": "Or",
   "login.sso.keycloak": "Sign in with Keycloak",
-  "login.sso.comingSoon": "Keycloak SSO is coming soon"
+  "login.sso.comingSoon": "Keycloak SSO is coming soon",
+
+  "dashboard.title": "Dashboard",
+  "dashboard.description": "Welcome to your app. Start building here."
 }

@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from '@tanstack/react-router'
 import { motion, AnimatePresence } from 'motion/react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -36,6 +37,7 @@ function ErrorMessage({ message }: { message: string }) {
 export function LoginPage() {
   const { t } = useTranslation()
   const login = useAuthStore(state => state.login)
+  const navigate = useNavigate()
 
   const [username, setUsername] = useState('admin')
   const [password, setPassword] = useState('admin')
@@ -45,7 +47,9 @@ export function LoginPage() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     const success = login(username, password)
-    if (!success) {
+    if (success) {
+      navigate({ to: '/app/dashboard' })
+    } else {
       setError(t('login.error.invalid'))
       setShake(true)
       setTimeout(() => setShake(false), 400)

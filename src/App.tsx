@@ -1,5 +1,6 @@
 import '@/env'
 import { useEffect, useState } from 'react'
+import { RouterProvider } from '@tanstack/react-router'
 import { check } from '@tauri-apps/plugin-updater'
 import { relaunch } from '@tauri-apps/plugin-process'
 import { initializeCommandSystem } from './lib/commands'
@@ -9,17 +10,12 @@ import { logger } from './lib/logger'
 import { cleanupOldFiles } from './lib/recovery'
 import { commands } from './lib/tauri-bindings'
 import './App.css'
-import { MainWindow } from './components/layout/MainWindow'
-import { ThemeProvider } from './components/ThemeProvider'
-import { ErrorBoundary } from './components/ErrorBoundary'
-import { LoginPage } from './components/auth/LoginPage'
 import { SplashScreen } from './components/SplashScreen'
-import { useAuthStore } from './store/auth-store'
 import { useSquareCornersEffect } from './hooks/useSquareCornersEffect'
+import { router } from './router'
 
 function App() {
   useSquareCornersEffect()
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated)
   const [ready, setReady] = useState(false)
 
   // Initialize command system and cleanup on app startup
@@ -119,19 +115,7 @@ function App() {
     return () => clearTimeout(updateTimer)
   }, [])
 
-  return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        {!ready ? (
-          <SplashScreen />
-        ) : isAuthenticated ? (
-          <MainWindow />
-        ) : (
-          <LoginPage />
-        )}
-      </ThemeProvider>
-    </ErrorBoundary>
-  )
+  return !ready ? <SplashScreen /> : <RouterProvider router={router} />
 }
 
 export default App
